@@ -22,18 +22,16 @@ public class DJAR {
         instance = this;
     }
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         DJAR djar = new DJAR();
-        djar.build("defnotmytoken");
-
-        WebSocketClient client = new WebSocketClient("wss://gateway.discord.gg/?v=8&encoding=json",djar);
-        client.connect();
-
+        djar.build("hmm");
 
     }
 
     public void build(String token) {
         this.token = token;
+        WebSocketClient client = new WebSocketClient("wss://gateway.discord.gg/?v=8&encoding=json",instance);
+        client.connect();
     }
 
     public String getToken() {

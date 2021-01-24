@@ -1,9 +1,12 @@
 package me.hammer86gn.discordjar.discord;
 
+import com.google.gson.JsonObject;
+
 public enum GatewayIntents {
     GUILD_CREATE("GUILDS", "(1 << 0)"),
     GUILD_UPDATE("GUILDS", "(1 << 0)"),
     GUILD_DELETE("GUILDS", "(1 << 0)"),
+    GUILD_PRESENCES("GUILDS", "(1 << 0)",true),
     GUILD_ROLE_CREATE("GUILDS", "(1 << 0)"),
     GUILD_ROLE_UPDATE("GUILDS", "(1 << 0)"),
     GUILD_ROLE_DELETE("GUILDS", "(1 << 0)"),
@@ -15,6 +18,7 @@ public enum GatewayIntents {
     GUILD_MEMBER_ADD("GUILD_MEMBERS","(1 << 1)"),
     GUILD_MEMBER_UPDATE("GUILD_MEMBERS","(1 << 1)"),
     GUILD_MEMBER_REMOVE("GUILD_MEMBERS","(1 << 1)"),
+    GUILD_MEMBERS("GUILD_MEMBERS","(1 << 1)",true),
 
     GUILD_BANS_ADD("GUILDS_BANS","(1 << 2)"),
     GUILD_BANS_REMOVE("GUILDS_BANS","(1 << 2)"),
@@ -60,10 +64,30 @@ public enum GatewayIntents {
 
     private String category;
     private String header;
+    private boolean privileged;
 
     GatewayIntents(String category, String header) {
         this.category = category;
         this.header = header;
     }
 
+    GatewayIntents(String category, String header,boolean privileged){
+
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public String getHeader() {
+        return header;
+    }
+
+    @Override
+    public String toString() {
+        return "GatewayIntents{" +
+                "category='" + category + '\'' +
+                ", header='" + header + '\'' +
+                '}';
+    }
 }

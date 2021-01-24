@@ -31,7 +31,7 @@ public class WebSocketClient extends org.java_websocket.client.WebSocketClient{
         super(URI.create(url));
         this.url = url;
         this.djar = djar;
-        this.connect();
+
     }
 
 
@@ -70,7 +70,7 @@ public class WebSocketClient extends org.java_websocket.client.WebSocketClient{
     public void onMessage(String s) {
         System.out.println(s);
 
-        JsonObject receivedData = JSON_PARSER.parse(s).getAsJsonObject();
+        JsonObject receivedData = JsonParser.parseString(s).getAsJsonObject();
         String type = receivedData.get("t").toString();
         JsonObject details = receivedData.get("d").getAsJsonObject();
         if (type.equals("READY")) {
