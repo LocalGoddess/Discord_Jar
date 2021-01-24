@@ -24,7 +24,7 @@ public class DJAR {
 
     public static void main(String[] args) throws InterruptedException {
         DJAR djar = new DJAR();
-        djar.build("ODAxMjgzODUzMjAwNjU0NDA2.YAebvQ.Yt2bWesPM3F3YQM7xGBNNr7KZnc");
+        djar.build("defnotmytoken");
 
         WebSocketClient client = new WebSocketClient("wss://gateway.discord.gg/?v=8&encoding=json",djar);
         client.connect();
