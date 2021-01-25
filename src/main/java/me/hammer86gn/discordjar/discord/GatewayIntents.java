@@ -72,7 +72,9 @@ public enum GatewayIntents {
     }
 
     GatewayIntents(String category, String header,boolean privileged){
-
+        this.category = category;
+        this.header = header;
+        this.privileged = privileged;//-360 -70
     }
 
     public String getCategory() {

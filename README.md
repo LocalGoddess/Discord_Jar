@@ -32,3 +32,21 @@ A small robust Discord API wrapper
 | Ban Member                | LOW      | 0%         |
 | Message Object            | HIGH     | 0%         |
 | User Permissions          | HIGH     | 0%         |
+
+# Examples
+
+<b>Creating a Bot</b>
+
+```java
+import me.hammer86gn.discordjar.DJAR;
+
+public class Main() {
+    
+    public static final String YOUR_TOKEN = "YOURTOKEN";
+    
+    public static void main(String[] args) {
+        DJAR djar = new DJAR();
+        djar.build(YOUR_TOKEN);
+    }
+}
+```
