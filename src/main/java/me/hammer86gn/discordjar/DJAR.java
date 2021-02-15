@@ -11,6 +11,7 @@ package me.hammer86gn.discordjar;
 
 import com.google.gson.JsonParser;
 import me.hammer86gn.discordjar.connection.websocket.WebSocketClient;
+import me.hammer86gn.discordjar.discord.channel.Overwrite;
 
 public class DJAR {
     public static DJAR instance;
