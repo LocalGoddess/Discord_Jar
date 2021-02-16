@@ -1,10 +1,10 @@
 package me.hammer86gn.discordjar.discord.channel.guild;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import me.hammer86gn.discordjar.discord.channel.IChannel;
 
 import java.security.InvalidParameterException;
-import java.util.Arrays;
 
 public class NewsChannel implements IChannel {
 
@@ -13,14 +13,14 @@ public class NewsChannel implements IChannel {
     private final String name;
     private final int type;
     private final int position;
-    private final String[] permission_overwrites;
+    private final JsonArray permission_overwrites;
     private final boolean nsfw;
     private final String topic;
     private final String last_message_id;
     private final String parent_id;
     private final JsonObject channelObject;
 
-    public NewsChannel(String id, String guild_id, String name, int position, String permission_overwrites[], boolean nsfw, String topic, String last_message_id, String parent_id) {
+    public NewsChannel(String id, String guild_id, String name, int position, JsonArray permission_overwrites, boolean nsfw, String topic, String last_message_id, String parent_id) {
         this.id = id;
         this.guild_id = guild_id;
         this.name = name;
@@ -50,7 +50,7 @@ public class NewsChannel implements IChannel {
         channelObject.addProperty("name",name);
         channelObject.addProperty("type",type);
         channelObject.addProperty("position",position);
-        channelObject.addProperty("permission_overwrites", Arrays.toString(permission_overwrites));
+        channelObject.add("permission_overwrites",permission_overwrites);
         channelObject.addProperty("nsfw",nsfw);
         channelObject.addProperty("topic",topic);
         channelObject.addProperty("last_message_id",last_message_id);
@@ -103,7 +103,7 @@ public class NewsChannel implements IChannel {
     }
 
     @Override
-    public String[] getPermissionOverwrites() {
+    public JsonArray getPermissionOverwrites() {
         return permission_overwrites;
     }
 

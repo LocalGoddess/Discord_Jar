@@ -1,5 +1,6 @@
 package me.hammer86gn.discordjar.discord.channel.guild;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import me.hammer86gn.discordjar.discord.channel.IChannel;
 
@@ -13,7 +14,7 @@ public class TextChannel implements IChannel {
     private final String name;
     private final int type;
     private final int position;
-    private final String[] permission_overwrites;
+    private final JsonArray permission_overwrites;
     private final int rate_limit_per_user;
     private final boolean nsfw;
     private final String topic;
@@ -21,7 +22,7 @@ public class TextChannel implements IChannel {
     private final String parent_id;
     private final JsonObject channelObject;
 
-    public TextChannel(String id, String guild_id, String name, int position, String[] permission_overwrites, int rate_limit_per_user, boolean nsfw, String topic, String last_message_id, String parent_id) {
+    public TextChannel(String id, String guild_id, String name, int position, JsonArray permission_overwrites, int rate_limit_per_user, boolean nsfw, String topic, String last_message_id, String parent_id) {
 
         this.id = id;
         this.guild_id = guild_id;
@@ -53,7 +54,7 @@ public class TextChannel implements IChannel {
         channelObject.addProperty("name",name);
         channelObject.addProperty("type",type);
         channelObject.addProperty("position",position);
-        channelObject.addProperty("permission_overwrites", Arrays.toString(permission_overwrites));
+        channelObject.add("permission_overwrites", permission_overwrites);
         channelObject.addProperty("rate_limit_per_user",rate_limit_per_user);
         channelObject.addProperty("nsfw",nsfw);
         channelObject.addProperty("topic",topic);
@@ -108,7 +109,7 @@ public class TextChannel implements IChannel {
     }
 
     @Override
-    public String[] getPermissionOverwrites() {
+    public JsonArray getPermissionOverwrites() {
         return permission_overwrites;
     }
 

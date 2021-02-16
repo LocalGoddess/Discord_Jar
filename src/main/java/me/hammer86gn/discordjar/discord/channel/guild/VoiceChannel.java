@@ -1,5 +1,6 @@
 package me.hammer86gn.discordjar.discord.channel.guild;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import me.hammer86gn.discordjar.discord.channel.IChannel;
 
@@ -14,13 +15,13 @@ public class VoiceChannel implements IChannel {
     private final int type;
     private final boolean nsfw;
     private final int position;
-    private final String[] permission_overwrites;
+    private final JsonArray permission_overwrites;
     private final int bitrate;
     private final int user_limit;
     private final String parent_id;
     private final JsonObject channelObject;
 
-    public VoiceChannel(String id, String guild_id, String name, boolean nsfw, int position, String[] permission_overwrites, int bitrate, int user_limit, String parent_id) {
+    public VoiceChannel(String id, String guild_id, String name, boolean nsfw, int position, JsonArray permission_overwrites, int bitrate, int user_limit, String parent_id) {
         this.id = id;
         this.guild_id = guild_id;
         this.name = name;
@@ -43,7 +44,7 @@ public class VoiceChannel implements IChannel {
         channelObject.addProperty("type",type);
         channelObject.addProperty("nsfw",nsfw);
         channelObject.addProperty("position",position);
-        channelObject.addProperty("permission_overwrites", Arrays.toString(permission_overwrites));
+        channelObject.add("permission_overwrites",permission_overwrites);
         channelObject.addProperty("bitrate",bitrate);
         channelObject.addProperty("user_limit",user_limit);
         channelObject.addProperty("parent_id",parent_id);
@@ -95,7 +96,7 @@ public class VoiceChannel implements IChannel {
     }
 
     @Override
-    public String[] getPermissionOverwrites() {
+    public JsonArray getPermissionOverwrites() {
         return permission_overwrites;
     }
 

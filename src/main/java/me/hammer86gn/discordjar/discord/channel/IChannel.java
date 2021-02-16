@@ -1,5 +1,6 @@
 package me.hammer86gn.discordjar.discord.channel;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 public interface IChannel {
@@ -16,7 +17,7 @@ public interface IChannel {
 
     int getChannelPosition();
 
-    String[] getPermissionOverwrites();
+    JsonArray getPermissionOverwrites();
 
     boolean isNSFW();
 

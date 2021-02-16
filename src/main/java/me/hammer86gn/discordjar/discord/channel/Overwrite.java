@@ -1,5 +1,6 @@
 package me.hammer86gn.discordjar.discord.channel;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import java.security.InvalidParameterException;
@@ -10,7 +11,7 @@ public class Overwrite {
     private final int type;
     private final String allow;
     private final String deny;
-    private final JsonObject object;
+    private final JsonArray object;
 
     /**
      * Permission Overwrites for Channels and others
@@ -30,14 +31,16 @@ public class Overwrite {
             throw new InvalidParameterException("Overwrite Type cannot be any int other than 0 or 1 see documentation for more info");
         }
 
-        this.object = new JsonObject();
-        object.addProperty("id",id);
-        object.addProperty("type",type);
-        object.addProperty("allow",allow);
-        object.addProperty("deny",deny);
+        JsonObject obj = new JsonObject();
+        obj.addProperty("id",id);
+        obj.addProperty("type",type);
+        obj.addProperty("allow",allow);
+        obj.addProperty("deny",deny);
+
+        object = obj.getAsJsonArray();
     }
 
-    JsonObject getAsJson() {
+    public JsonArray toJson() {
         return object;
     }
 
