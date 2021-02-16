@@ -11,12 +11,13 @@ package me.hammer86gn.discordjar;
 
 import com.google.gson.JsonParser;
 import me.hammer86gn.discordjar.connection.websocket.WebSocketClient;
-import me.hammer86gn.discordjar.discord.channel.Overwrite;
+
 
 public class DJAR {
     public static DJAR instance;
     private String token;
     public static JsonParser JSON_PARSER;
+    public static final String API_URL = "http://discord.com/api";
     //URL: wss://gateway.discord.gg/?v=8&encoding=json
 
     public DJAR() {
