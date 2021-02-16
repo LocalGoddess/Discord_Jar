@@ -30,8 +30,8 @@ A small robust Discord API wrapper
 | Member Object             | HIGH     | 0%         |
 | Kick Member               | LOW      | 0%         |
 | Ban Member                | LOW      | 0%         |
-| Message Object            | HIGH     | 50%        |
-| User Permissions          | HIGH     | 75%        |
+| Message Object            | HIGH     | 0%        |
+| User Permissions          | HIGH     | 0%        |
 | Guild Object              | HIGH     | 0%         |
 
 # Examples
