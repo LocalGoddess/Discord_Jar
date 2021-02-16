@@ -18,20 +18,21 @@ A small robust Discord API wrapper
 | Feature                                               | Status   |
 |-------------------------------------------------------|----------|
 | Connect Application to the Discord Websockets/gateway | Passable |
+| Intents                                               | Passable |
 
 
 # Planned Features
 
 | Feature                   | Priority | % Complete |
 |---------------------------|----------|------------|
-| Intents                   | MEDIUM   | 50%        |
 | Reading / Sending Message | HIGH     | 0%         |
 | Creating / Sending Embeds | LOW      | 0%         |
 | Member Object             | HIGH     | 0%         |
 | Kick Member               | LOW      | 0%         |
 | Ban Member                | LOW      | 0%         |
-| Message Object            | HIGH     | 0%         |
-| User Permissions          | HIGH     | 0%         |
+| Message Object            | HIGH     | 50%        |
+| User Permissions          | HIGH     | 75%        |
+| Guild Object              | HIGH     | 0%         |
 
 # Examples
 

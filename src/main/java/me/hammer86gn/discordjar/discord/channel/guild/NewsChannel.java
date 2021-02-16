@@ -3,6 +3,7 @@ package me.hammer86gn.discordjar.discord.channel.guild;
 import com.google.gson.JsonObject;
 import me.hammer86gn.discordjar.discord.channel.IChannel;
 
+import java.security.InvalidParameterException;
 import java.util.Arrays;
 
 public class NewsChannel implements IChannel {
@@ -31,6 +32,18 @@ public class NewsChannel implements IChannel {
         this.last_message_id = last_message_id;
         this.parent_id = parent_id;
         this.channelObject = new JsonObject();
+
+        String discordFriendlyName = name.toLowerCase().replace(' ','-');
+
+        if (discordFriendlyName.toCharArray().length > 100) {
+            throw new InvalidParameterException("GuildTextChannel names can only be a maximum of 100 characters");
+        }
+        if (discordFriendlyName.toCharArray().length < 2) {
+            throw new InvalidParameterException("GuildTextChannel names can only be a minimum of 2 characters");
+        }
+        if (topic.toCharArray().length > 1024) {
+            throw new InvalidParameterException("GuildTextChannel topics can only be a maximum of 1024 characters");
+        }
 
         channelObject.addProperty("id",id);
         channelObject.addProperty("guild_id",guild_id);
