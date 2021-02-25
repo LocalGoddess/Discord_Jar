@@ -16,6 +16,7 @@ import java.io.IOException;
 
 
 public class DJAR {
+
     public static DJAR instance;
     private String token;
     public static JsonParser JSON_PARSER;
@@ -23,6 +24,11 @@ public class DJAR {
 
     public DJAR() {
         instance = this;
+    }
+
+    public static void main(String[] args) throws IOException {
+        DJAR djar = new DJAR();
+        djar.build("lolnotokenhere");
     }
 
     public void build(String token) {
