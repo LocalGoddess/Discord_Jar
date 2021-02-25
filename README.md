@@ -25,7 +25,7 @@ A small robust Discord API wrapper
 
 | Thing         | Complete % |
 |---------------|------------|
-| Guild         | 1%         |
+| Guild         | 18%        |
 
 
 # Examples

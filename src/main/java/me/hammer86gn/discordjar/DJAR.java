@@ -26,11 +26,6 @@ public class DJAR {
         instance = this;
     }
 
-    public static void main(String[] args) throws IOException {
-        DJAR djar = new DJAR();
-        djar.build("lolnotokenhere");
-    }
-
     public void build(String token) {
         this.token = token;
         WebSocketClient client = new WebSocketClient("wss://gateway.discord.gg/?v=8&encoding=json",instance);
