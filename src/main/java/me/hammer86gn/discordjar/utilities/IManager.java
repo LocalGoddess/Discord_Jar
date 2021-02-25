@@ -2,10 +2,10 @@ package me.hammer86gn.discordjar.utilities;
 
 import java.util.List;
 
-public interface IManager<Type> {
+public interface IManager<Object> {
 
-    void register(Type type);
+    void register(Object type);
 
-    List<Type> getAll();
+    List<Object> getAll();
 
 }
