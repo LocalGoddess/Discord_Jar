@@ -2,12 +2,9 @@ package me.hammer86gn.discordjar.discord.entites.guild;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import me.hammer86gn.discordjar.DJAR;
 import me.hammer86gn.discordjar.connection.request.Requester;
 
-import javax.xml.crypto.Data;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 public class Guild implements IGuild {
@@ -45,33 +42,36 @@ public class Guild implements IGuild {
 
     @Override
     public String getGuildID() {
-        String id = guildObject.get("id").getAsString();
-        return id;
+        return guildObject.get("id").getAsString();
     }
 
     @Override
     public long getGuildIDLong() {
-        long id = guildObject.get("id").getAsLong();
-        return id;
+        return guildObject.get("id").getAsLong();
+    }
+
+    @Override
+    public String getGuildIconID() {
+        return guildObject.get("icon").getAsString();
     }
 
     @Override
     public String getGuildIconURL() {
-        return null;
+        return "https://cdn.discordapp.com/icons/" + getGuildID() + "/" + getGuildIconID() + ".webp" ;
     }
 
     @Override
     public String getGuildName() {
-        return null;
+        return guildObject.get("name").getAsString();
     }
 
     @Override
     public String getGuildRegion() {
-        return null;
+        return guildObject.get("region").getAsString();
     }
 
     @Override
     public String getOwnerID() {
-        return null;
+        return guildObject.get("owner_id").getAsString();
     }
 }

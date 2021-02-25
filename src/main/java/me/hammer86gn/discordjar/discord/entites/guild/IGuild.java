@@ -8,6 +8,8 @@ public interface IGuild {
 
     long getGuildIDLong();
 
+    String getGuildIconID();
+
     String getGuildIconURL();
 
     String getGuildName();
