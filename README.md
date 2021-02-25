@@ -21,18 +21,12 @@ A small robust Discord API wrapper
 | Intents                                               | Passable |
 
 
-# Planned Features
+# Currently in the Works
 
-| Feature                   | Priority | % Complete |
-|---------------------------|----------|------------|
-| Reading / Sending Message | HIGH     | 0%         |
-| Creating / Sending Embeds | LOW      | 0%         |
-| Member Object             | HIGH     | 0%         |
-| Kick Member               | LOW      | 0%         |
-| Ban Member                | LOW      | 0%         |
-| Message Object            | HIGH     | 0%        |
-| User Permissions          | HIGH     | 0%        |
-| Guild Object              | HIGH     | 0%         |
+| Thing         | Complete % |
+|---------------|------------|
+| Guild         | 1%         |
+
 
 # Examples
 
