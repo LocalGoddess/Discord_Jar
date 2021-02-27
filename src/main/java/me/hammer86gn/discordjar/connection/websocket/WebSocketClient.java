@@ -42,27 +42,28 @@ public class WebSocketClient extends org.java_websocket.client.WebSocketClient{
         JsonObject identifyD = new JsonObject();
         JsonObject identifyDProperties = new JsonObject();
 
-        /**
+        /*
          * The 'D' Value Properties Constructor for the Identification payload
          */
         identifyDProperties.addProperty("$os","Windows");
         identifyDProperties.addProperty("$browser","Discord.jar");
         identifyDProperties.addProperty("$device","Discord.jar");
 
-        /**
+        /*
          * The 'D' Value Constructor for the Identification payload
          */
         identifyD.addProperty("token",djar.getToken());
         identifyD.addProperty("intents",513);
         identifyD.add("properties",identifyDProperties);
 
-        /**
+        /*
          * The Constructor for the Identification payload
          */
         identifyConnectionPacket.addProperty("op",2);
         identifyConnectionPacket.add("d",identifyD);
 
         send(identifyConnectionPacket.toString());
+
         isConnected = true;
     }
 

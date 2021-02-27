@@ -17,6 +17,7 @@ import java.io.IOException;
 
 public class DJAR {
 
+    public static final String CLIENT_ID = "814638406402703383";
     public static DJAR instance;
     private String token;
     public static JsonParser JSON_PARSER;
@@ -24,6 +25,11 @@ public class DJAR {
 
     public DJAR() {
         instance = this;
+    }
+
+    public static void main(String[] args) throws IOException {
+        DJAR djar = new DJAR();
+        djar.build("ODAxMjgzODUzMjAwNjU0NDA2.YAebvQ.gRj-HfaeWf69gK9Axxnsj_PYG0U");
     }
 
     public void build(String token) {
