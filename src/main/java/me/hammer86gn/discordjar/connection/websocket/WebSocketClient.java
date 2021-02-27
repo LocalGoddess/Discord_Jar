@@ -14,6 +14,9 @@ package me.hammer86gn.discordjar.connection.websocket;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import me.hammer86gn.discordjar.DJAR;
+import me.hammer86gn.discordjar.discord.entites.message.Message;
+import me.hammer86gn.discordjar.event.message.BaseMessageEvent;
+import me.hammer86gn.discordjar.event.message.MessageCreatedEvent;
 import org.java_websocket.handshake.ServerHandshake;
 
 import java.net.URI;
@@ -74,6 +77,12 @@ public class WebSocketClient extends org.java_websocket.client.WebSocketClient{
         JsonObject receivedData = JsonParser.parseString(s).getAsJsonObject();
         String type = receivedData.get("t").toString();
         JsonObject details = receivedData.get("d").getAsJsonObject();
+
+        if (type.equals("MESSAGE_CREATE")) {
+            System.out.println("EVENT STARTED? " + receivedData);
+            new MessageCreatedEvent(djar, Message.getFromJson(receivedData));
+        }
+
         if (type.equals("READY")) {
             heartbeatInterval = receivedData.get("heartbeat_interval").getAsLong();
             new Thread(() -> {

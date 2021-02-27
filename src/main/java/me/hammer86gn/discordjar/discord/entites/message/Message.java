@@ -16,6 +16,7 @@ public class Message implements IMessage{
     public Message(JsonObject messageObject) {
         this.messageObject = messageObject;
         this.messageDetails = messageObject.get("d").getAsJsonObject();
+        this.id = getMessageID();
     }
 
     @Override
