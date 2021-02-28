@@ -8,6 +8,8 @@ public interface IMessage {
 
     long getMessageID();
 
+    String getMessageType();
+
     // User
 
     String getMessageSenderName();

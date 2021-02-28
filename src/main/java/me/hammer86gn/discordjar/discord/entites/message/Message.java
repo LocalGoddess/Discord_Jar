@@ -59,6 +59,11 @@ public class Message implements IMessage{
     }
 
     @Override
+    public String getMessageType() {
+        return messageDetails.get("type").getAsString();
+    }
+
+    @Override
     public long getChannelID() {
         return messageDetails.get("channel_id").getAsLong();
     }

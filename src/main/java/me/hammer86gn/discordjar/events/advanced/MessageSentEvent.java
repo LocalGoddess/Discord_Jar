@@ -8,4 +8,19 @@ public class MessageSentEvent extends BasicMessageEvent {
     public MessageSentEvent(DJAR djar, Message message) {
         super(djar, message);
     }
+
+    @Override
+    public DJAR getDJAR() {
+        return super.getDJAR();
+    }
+
+    @Override
+    public String getMessageContent() {
+        return super.getMessageContent();
+    }
+
+    @Override
+    public Message getMessage() {
+        return super.getMessage();
+    }
 }

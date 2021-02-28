@@ -11,22 +11,17 @@ public abstract class EventListener implements IEventsListener {
     public void onBasicMessageEvent(BasicMessageEvent basicMessageEvent) {}
 
     // AdvancedEvent
-
-
-    // Message
-    public void onMessageSentEvent(MessageSentEvent messageSentEvent) {}
+        // Message
+        public void onMessageSentEvent(MessageSentEvent messageSentEvent) {}
 
     @Override
     public void onEvent(IBasicEvent basicEvent) {
         onBasicEvent(basicEvent);
-        if (basicEvent instanceof BasicMessageEvent) {
-            onBasicMessageEvent((BasicMessageEvent) basicEvent);
-        }
+        if (basicEvent instanceof MessageSentEvent)
+            onMessageSentEvent((MessageSentEvent) basicEvent);
 
         // Advanced
-        if (basicEvent instanceof MessageSentEvent) {
-            onMessageSentEvent((MessageSentEvent) basicEvent);
-        }
+
 
     }
 }

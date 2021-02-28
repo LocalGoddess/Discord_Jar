@@ -22,9 +22,4 @@ public abstract class BasicMessageEvent extends BasicEvent {
     public Message getMessage() {
         return message;
     }
-
-    @Override
-    public DJAR getDJAR() {
-        return djar;
-    }
 }

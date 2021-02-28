@@ -11,4 +11,9 @@ public abstract class BasicEvent implements IBasicEvent{
         this.djar = djar;
     }
 
+    @Override
+    public DJAR getDJAR() {
+        return djar;
+    }
+
 }
