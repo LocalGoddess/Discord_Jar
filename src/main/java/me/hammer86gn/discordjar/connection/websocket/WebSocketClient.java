@@ -3,8 +3,6 @@ package me.hammer86gn.discordjar.connection.websocket;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import me.hammer86gn.discordjar.DJAR;
-import me.hammer86gn.discordjar.discord.entites.message.Message;
-import me.hammer86gn.discordjar.events.advanced.MessageSentEvent;
 import me.hammer86gn.discordjar.handle.BaseHandle;
 import me.hammer86gn.discordjar.handle.MessageSentHandle;
 import org.java_websocket.handshake.ServerHandshake;
@@ -13,7 +11,7 @@ import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
 
-public class WebSocketClient extends org.java_websocket.client.WebSocketClient{
+public class WebSocketClient extends org.java_websocket.client.WebSocketClient {
     private final String url;
     private final DJAR djar;
     private boolean isConnected;
@@ -29,8 +27,8 @@ public class WebSocketClient extends org.java_websocket.client.WebSocketClient{
     }
 
     protected void setup() {
-       final BaseHandle.HandleHandler handleHandler = new BaseHandle.HandleHandler(djar);
-       handleMap.put("MESSAGE_CREATE", new MessageSentHandle(djar));
+        final BaseHandle.HandleHandler handleHandler = new BaseHandle.HandleHandler(djar);
+        handleMap.put("MESSAGE_CREATE", new MessageSentHandle(djar));
 
     }
 
@@ -59,12 +57,12 @@ public class WebSocketClient extends org.java_websocket.client.WebSocketClient{
 
         JsonObject conDetails = new JsonObject();
         conDetails.addProperty("token", djar.getToken());
-        conDetails.addProperty("intents",513);
+        conDetails.addProperty("intents", 513);
         conDetails.add("properties", conProperties);
-        conDetails.addProperty("v",8);
+        conDetails.addProperty("v", 8);
 
-        conObject.addProperty("op",2);
-        conObject.add("d",conDetails);
+        conObject.addProperty("op", 2);
+        conObject.add("d", conDetails);
 
         send(conObject.toString());
 
@@ -84,8 +82,8 @@ public class WebSocketClient extends org.java_websocket.client.WebSocketClient{
             new Thread(() -> {
                 while (!getConnection().isClosed()) {
                     JsonObject heartbeat = new JsonObject();
-                    heartbeat.addProperty("op",1);
-                    heartbeat.addProperty("d",System.currentTimeMillis());
+                    heartbeat.addProperty("op", 1);
+                    heartbeat.addProperty("d", System.currentTimeMillis());
                     send(heartbeat.toString());
                     try {
                         Thread.sleep(keepAliveInterval);
@@ -98,10 +96,10 @@ public class WebSocketClient extends org.java_websocket.client.WebSocketClient{
         }
 
 
-         if (handleMap.get(requestType) instanceof MessageSentHandle) {
-             MessageSentHandle messageSentHandle = new MessageSentHandle(djar);
-             messageSentHandle.handleInternally(contents);
-         }
+        if (handleMap.get(requestType) instanceof MessageSentHandle) {
+            MessageSentHandle messageSentHandle = new MessageSentHandle(djar);
+            messageSentHandle.handleInternally(contents);
+        }
 
 
     }

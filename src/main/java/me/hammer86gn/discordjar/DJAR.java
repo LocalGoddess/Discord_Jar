@@ -34,7 +34,7 @@ public class DJAR {
 
     public void build(String token) {
         this.token = token;
-        WebSocketClient client = new WebSocketClient("wss://gateway.discord.gg/?v=8&encoding=json",instance);
+        WebSocketClient client = new WebSocketClient("wss://gateway.discord.gg/?v=8&encoding=json", instance);
         client.connect();
     }
 

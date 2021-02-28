@@ -2,7 +2,7 @@ package me.hammer86gn.discordjar.discord.entites.message;
 
 import com.google.gson.JsonObject;
 
-public class Message implements IMessage{
+public class Message implements IMessage {
 
     private long id;
 

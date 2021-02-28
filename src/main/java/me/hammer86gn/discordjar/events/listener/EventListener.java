@@ -7,12 +7,16 @@ import me.hammer86gn.discordjar.events.basic.message.BasicMessageEvent;
 public abstract class EventListener implements IEventsListener {
 
     //BasicEvent
-    public void onBasicEvent(IBasicEvent basicEvent) {}
-    public void onBasicMessageEvent(BasicMessageEvent basicMessageEvent) {}
+    public void onBasicEvent(IBasicEvent basicEvent) {
+    }
+
+    public void onBasicMessageEvent(BasicMessageEvent basicMessageEvent) {
+    }
 
     // AdvancedEvent
-        // Message
-        public void onMessageSentEvent(MessageSentEvent messageSentEvent) {}
+    // Message
+    public void onMessageSentEvent(MessageSentEvent messageSentEvent) {
+    }
 
     @Override
     public void onEvent(IBasicEvent basicEvent) {

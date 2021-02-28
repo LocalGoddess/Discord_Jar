@@ -40,7 +40,7 @@ public class EventRegister implements IEventRegister {
             try {
                 registeredEvent.onEvent(basicEvent);
             } catch (Throwable t) {
-                String message =  t.getMessage();
+                String message = t.getMessage();
                 System.out.println("One event had an exception" + "\nException: " + message);
                 if (t instanceof Error) {
                     throw (Error) t;
