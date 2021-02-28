@@ -11,9 +11,6 @@ package me.hammer86gn.discordjar;
 
 import com.google.gson.JsonParser;
 import me.hammer86gn.discordjar.connection.websocket.WebSocketClient;
-import me.hammer86gn.discordjar.event.EventManager;
-
-import java.io.IOException;
 
 
 public class DJAR {
@@ -22,7 +19,6 @@ public class DJAR {
     public static DJAR instance;
     private String token;
     public static JsonParser JSON_PARSER;
-    public EventManager eventManager = new EventManager();
     //URL: wss://gateway.discord.gg/?v=8&encoding=json
 
     private Object[] listeners;
@@ -41,15 +37,6 @@ public class DJAR {
         return token;
     }
 
-    public void addListener(Object... listeners) {
-        for (Object listener : listeners) {
-            eventManager.register(listener);
-        }
-    }
-
-    public Object[] getListeners() {
-        return listeners;
-    }
 
     public static DJAR getInstance() {
         return instance;
