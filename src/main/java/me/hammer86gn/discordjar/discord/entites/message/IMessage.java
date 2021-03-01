@@ -1,5 +1,7 @@
 package me.hammer86gn.discordjar.discord.entites.message;
 
+import com.google.gson.JsonArray;
+
 public interface IMessage {
 
     // Message
@@ -9,6 +11,8 @@ public interface IMessage {
     long getMessageID();
 
     String getMessageType();
+
+    String getMessageSentDate();
 
     // User
 
@@ -21,6 +25,10 @@ public interface IMessage {
     String getMessageSenderAvatarURL();
 
     String getMessageSenderDiscriminator();
+
+    JsonArray getMentionedUsers();
+
+
 
     // Channel
 

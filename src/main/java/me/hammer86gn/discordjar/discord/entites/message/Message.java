@@ -1,5 +1,6 @@
 package me.hammer86gn.discordjar.discord.entites.message;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 public class Message implements IMessage {
@@ -54,6 +55,11 @@ public class Message implements IMessage {
     }
 
     @Override
+    public JsonArray getMentionedUsers() {
+        return messageDetails.get("mentions").getAsJsonArray();
+    }
+
+    @Override
     public long getMessageID() {
         return messageDetails.get("id").getAsLong();
     }
@@ -61,6 +67,11 @@ public class Message implements IMessage {
     @Override
     public String getMessageType() {
         return messageDetails.get("type").getAsString();
+    }
+
+    @Override
+    public String getMessageSentDate() {
+        return messageDetails.get("timestamp").getAsString();
     }
 
     @Override

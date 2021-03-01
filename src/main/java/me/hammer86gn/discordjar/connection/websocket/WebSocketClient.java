@@ -16,6 +16,8 @@ public class WebSocketClient extends org.java_websocket.client.WebSocketClient {
     private final DJAR djar;
     private boolean isConnected;
     private long keepAliveInterval;
+    private String sessionID;
+    private int closeCode;
     protected final Map<String, BaseHandle> handleMap = new HashMap<>();
 
     public WebSocketClient(String url, DJAR djar) {
@@ -48,6 +50,13 @@ public class WebSocketClient extends org.java_websocket.client.WebSocketClient {
     @Override
     public void onOpen(ServerHandshake serverHandshake) {
         System.out.println("Received Handshake: " + serverHandshake.getHttpStatus() + "\nwith message" + serverHandshake.getHttpStatusMessage());
+
+        send(connectionPacket().toString());
+
+        isConnected = true;
+    }
+
+    public JsonObject connectionPacket() {
         JsonObject conObject = new JsonObject();
 
         JsonObject conProperties = new JsonObject();
@@ -64,9 +73,7 @@ public class WebSocketClient extends org.java_websocket.client.WebSocketClient {
         conObject.addProperty("op", 2);
         conObject.add("d", conDetails);
 
-        send(conObject.toString());
-
-        isConnected = true;
+        return conObject;
     }
 
     @SuppressWarnings("NullPointerEception")
@@ -77,13 +84,50 @@ public class WebSocketClient extends org.java_websocket.client.WebSocketClient {
         String requestType = contents.get("t").getAsString();
         JsonObject requestDetails = contents.get("d").getAsJsonObject();
 
+        heartbeatInit(contents, requestType);
+
+//        if (requestType.equals("READY")) {
+//            keepAliveInterval = contents.get("heartbeat_interval").getAsLong();
+//            new Thread(() -> {
+//                while (!getConnection().isClosed()) {
+//                    JsonObject heartbeat = new JsonObject();
+//                    heartbeat.addProperty("op", 1);
+//                    heartbeat.addProperty("d", System.currentTimeMillis());
+//                    send(heartbeat.toString());
+//                    try {
+//                        Thread.sleep(keepAliveInterval);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                        System.exit(0);
+//                    }
+//                }
+//            }).start();
+//        }
+
+
+
+        switch (requestType) {
+            case "READY":
+
+        }
+
+        if (handleMap.get(requestType) instanceof MessageSentHandle) {
+            MessageSentHandle messageSentHandle = new MessageSentHandle(djar);
+            messageSentHandle.handleInternally(contents);
+        }
+
+
+    }
+
+    private void heartbeatInit(JsonObject requestJson, String requestType) {
         if (requestType.equals("READY")) {
-            keepAliveInterval = contents.get("heartbeat_interval").getAsLong();
+            sessionID = requestJson.get("session_id").getAsString();
+            keepAliveInterval = requestJson.get("heartbeat_interval").getAsLong();
             new Thread(() -> {
                 while (!getConnection().isClosed()) {
                     JsonObject heartbeat = new JsonObject();
                     heartbeat.addProperty("op", 1);
-                    heartbeat.addProperty("d", System.currentTimeMillis());
+                    heartbeat.addProperty("d", System.currentTimeMillis() * System.currentTimeMillis());
                     send(heartbeat.toString());
                     try {
                         Thread.sleep(keepAliveInterval);
@@ -94,22 +138,40 @@ public class WebSocketClient extends org.java_websocket.client.WebSocketClient {
                 }
             }).start();
         }
+    }
 
-
-        if (handleMap.get(requestType) instanceof MessageSentHandle) {
-            MessageSentHandle messageSentHandle = new MessageSentHandle(djar);
-            messageSentHandle.handleInternally(contents);
-        }
-
+    public void cacheGuilds() {
 
     }
 
+    public void connectionInit() {
+
+    }
+
+
+
     @Override
     public void onClose(int i, String s, boolean b) {
+        closeCode = i;
         System.out.println("Connection Closed " +
                 "\nClose Code: " + i +
                 "\nClose Reason: " + s +
                 "\nClose caused by Remote: " + b);
+        isConnected = false;
+    }
+
+    private JsonObject connectionResurrect() {
+        JsonObject resumeDetails = new JsonObject();
+        resumeDetails.addProperty("token",djar.getToken());
+        resumeDetails.addProperty("session_id",sessionID);
+        resumeDetails.addProperty("seq",1337);
+
+
+        JsonObject resumePacket = new JsonObject();
+        resumePacket.addProperty("op",11);
+        resumePacket.add("d",resumeDetails);
+
+        return resumePacket;
     }
 
     @Override
@@ -119,5 +181,9 @@ public class WebSocketClient extends org.java_websocket.client.WebSocketClient {
 
     public boolean isConnected() {
         return isConnected;
+    }
+
+    public int getConnectionCloseCode() {
+        return closeCode;
     }
 }
