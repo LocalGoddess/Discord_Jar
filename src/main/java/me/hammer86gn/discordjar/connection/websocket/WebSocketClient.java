@@ -177,6 +177,7 @@ public class WebSocketClient extends org.java_websocket.client.WebSocketClient {
     @Override
     public void onError(Exception e) {
         e.printStackTrace();
+        isConnected = false;
     }
 
     public boolean isConnected() {

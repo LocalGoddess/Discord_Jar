@@ -2,6 +2,8 @@
 
 A small robust Discord API wrapper
 
+**Disclaimer: THIS IS NOT FINISHED AND SHOULD NOT BE USED IN ITS CURRENT STATE**
+
 # Current Features
 
 *Yes I know it's short*
