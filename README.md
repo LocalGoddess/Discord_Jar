@@ -1,5 +1,8 @@
 # Discord_Jar
 
+
+##  I Moved This Project To https://github.com/Hammer86gn/Discord.jar
+
 A small robust Discord API wrapper
 
 **Disclaimer: THIS IS NOT FINISHED AND SHOULD NOT BE USED IN ITS CURRENT STATE**
