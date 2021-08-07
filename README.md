@@ -1,7 +1,7 @@
 # Discord_Jar
 
 
-##  I Moved This Project To https://github.com/Hammer86gn/Discord.jar
+##  I Moved This Project To https://github.com/discordjar/Discord.jar
 
 A small robust Discord API wrapper
 
